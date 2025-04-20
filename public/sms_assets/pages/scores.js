@@ -1,8 +1,23 @@
 $(document).ready(function () {
 
-    
+    // function clearAndAppendOptions(selector, options, defaultOptionText) {
+    //     $(selector).html(`<option value="0">${defaultOptionText}</option>`);
+    //     $.each(options, function (key, value) {
+    //         $(selector).append(`<option value="${value.id}">${value.name}</option>`);
+    //     });
+    // }
+
+    // success: function(result) {
+    //     console.log(result);
+    //     clearAndAppendOptions('#term', result.terms, '-- Select Term --');
+    // }
+
    $('#year').on('change',function(){
         var yearId = this.value;
+        if (!yearId || yearId === "0") {
+            alert('Please select a valid Year.');
+            return;
+        }
         $('#term').html('');
 
         var subURL='http://127.0.0.1:8000/api/fetch/year/term';
@@ -33,6 +48,10 @@ $(document).ready(function () {
 
     $('#level').on('change',function(){
         var levelId = this.value;
+        if (!levelId || levelId === "0") {
+            alert('Please select a valid level.');
+            return;
+        }
         var URL ='http://127.0.0.1:8000/api/fetch/level/class'
         $('#class').html('');
         // console.log(levelId );
@@ -62,6 +81,10 @@ $(document).ready(function () {
     })
     $('#class').on('change',function(){
         var classId = this.value;
+        if (!classId || classId === "0") {
+            alert('Please select a valid Class.');
+            return;
+        }
         var URL ='http://127.0.0.1:8000/api/fetch/class/stream'
         $.ajax({
             url:URL,
@@ -90,6 +113,14 @@ $(document).ready(function () {
     $('#stream').on('change',function(){
         var streamId = this.value;
         var classId = document.getElementById('class').value
+        if (!streamId || streamId === "0") {
+            alert('Please select a valid stream.');
+            return;
+        }
+        if (!classId || classId === "0") {
+            alert('Please select a valid Class.');
+            return;
+        }
 
          var URL ='http://127.0.0.1:8000/api/fetch/class/student'
         $('#student').html('')
@@ -124,6 +155,28 @@ $(document).ready(function () {
         var yearId = document.getElementById('year').value
         var levelId = document.getElementById('level').value
         var classId = document.getElementById('class').value
+
+        if (!classId || classId === "0") {
+            alert('Please select a valid Class.');
+            return;
+        }
+        if (!levelId || levelId === "0") {
+            alert('Please select a valid level.');
+            return;
+        }
+        if (!yearId || yearId === "0") {
+            alert('Please select a valid year.');
+            return;
+        }
+        if (!streamId || streamId === "0") {
+            alert('Please select a valid year.');
+            return;
+        }
+        if (!studentId || studentId === "0") {
+            alert('Please select a valid year.');
+            return;
+        }
+
         var URL ='http://127.0.0.1:8000/api/fetch/student/subject'
         $('#subject').html('')
 
