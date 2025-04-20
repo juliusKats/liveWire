@@ -1,4 +1,6 @@
 $(document).ready(function () {
+
+    
    $('#year').on('change',function(){
         var yearId = this.value;
         $('#term').html('');
@@ -19,6 +21,10 @@ $(document).ready(function () {
                     $("#term").append('<option value="' + value
                         .term_id + '">' + value.term + '</option>');
                 });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+                alert('An error occurred while fetching data. Please try again.');
             }
         })
 
@@ -47,6 +53,10 @@ $(document).ready(function () {
                 });
                 $('#stream').html('<option value="">-- Select Stream --</option>');
 
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+                alert('An error occurred while fetching data. Please try again.');
             }
         });
     })
@@ -70,6 +80,10 @@ $(document).ready(function () {
                         .stream_id + '">' + value.name + '</option>');
                 });
                 $('#student').html('<option value="">-- Select Student --</option>');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+                alert('An error occurred while fetching data. Please try again.');
             }
         });
     })
@@ -97,6 +111,10 @@ $(document).ready(function () {
                         .student_id + '">' + value.name + '</option>');
                 });
                 $('#subject').html('<option value="">-- Select Student --</option>');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+                alert('An error occurred while fetching data. Please try again.');
             }
         });
     })
@@ -130,6 +148,10 @@ $(document).ready(function () {
                         .subj + '">'+ value.code+ ' - ' +value.name + '</option>');
                 });
                 $('#paper').html('<option value="">-- Select Student --</option>');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+                alert('An error occurred while fetching data. Please try again.');
             }
         });
 
@@ -156,6 +178,10 @@ $(document).ready(function () {
                         .paper_id + '">' +value.name + '</option>');
                 });
                 $('#objective').html('<option value="">-- Select Objective --</option>');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+                alert('An error occurred while fetching data. Please try again.');
             }
         });
     })
@@ -163,6 +189,12 @@ $(document).ready(function () {
 
     $('#paper').on('change',function(){
         var paperId = this.value;
+        var streamId = document.getElementById('stream').value
+        var yearId = document.getElementById('year').value
+        var termId = document.getElementById('year').value
+        var levelId = document.getElementById('level').value
+        var classId = document.getElementById('class').value
+
         var subjectId = document.getElementById('subject').value;
         console.log(paperId);
         console.log(subjectId);
