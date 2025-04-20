@@ -1,0 +1,230 @@
+
+        //     // 'stdcountry'=>'required','exists:countries,name',
+        //     // 'stdnationality'=>'required','exists:countries,nationality',
+        //     // 'stdprovince'=>'min:3','string',
+        //     // 'stdDistrict'=>'min:3','string',
+        //     // 'stdCity'=>'min:3','string',
+        //     // 'stdCounty'=>'min:3','string',
+        //     // 'stdSubcounty'=>'min:3','string',
+        //     // 'stdProvince'=>'min:3','string',
+        //     // 'stdParish'=>'min:3','string',
+        //     // 'stdAddress'=>'min:20','string',
+
+        //     // 'emFname'=>'required','min:3','string',
+        //     // 'emMname'=>'required','min:3','string',
+        //     // 'emLname'=>'string','min:3',
+        //     // 'emRelation'=>'required','string','exists:relationships,name',
+        //     // 'emType'=>'required','string','exists:contact_types,name',
+        //     // 'emMobile'=>'required','min:10','numeric',
+        //     // 'emTel'=>'min:10','numeric',
+        //     // 'emMail'=>'email','max:30',
+        //     // 'emAddress'=>'string:max:2048',//  [Text Area]
+        //     // 'emphoto' =>'file','mime:jpeg,jpg,png','max:2048',//[files]
+
+        //     'regYear'=>'required','exists:years,name',
+        //     'regTerm'=>'required','exists:terms,name',
+        //     'regLevel'=>'required','levels:sections,name',
+        //     'stdsection'=>'required','exists:sections,name',
+        //     'stdclass'=>'required','exists:classes,name',
+
+        //     // 'livewith'=>'required',
+        //     // 'stdmedical'=>'required',
+
+        //     // 'agree'=>'required',
+
+        //     'officialComment'=>'string','max:2048'//[Text Area]
+        // ]);
+
+        // if($request->livewith =='both'){
+        //     $liveboth=$request->validate([
+        //     'FatherFname'=>'required','string','min:3',
+        //     'FatherMname'=>'string','min:3',
+        //     'FatherLName'=>'required','string','min:3',
+        //     'FatherEmail'=>'email','min:3',
+        //     'FatherMobile'=>'required','numeric','min:10',
+        //     'FatherTel'=>'numeric','min:10',
+        //     'FatherIDType'=>'required','exists:identities,name',
+        //     'FatherIDNo'=>'required','string','min:3',
+        //     'FatherCountry'=>'required','exists:countries,name',
+        //     'FatherNationality'=>'required','exists:countries,nationality',
+        //     'FatherProvince'=>'string','min:3',
+        //     'FatherDistrict'=>'string','min:3',
+        //     'FatherCity'=>'string','min:3',
+        //     'FatherCounty'=>'string','min:3',
+        //     'FatherSubcounty'=>'string','min:3',
+        //     'FatherParish'=>'string','min:3',
+        //     'FatherAddress'=>'text','min:30',
+        //     'FatherPhoto'=>'mime:jpeg,jpg,png','max:2048',
+
+        //     'MotherFname'=>'required','string','min:3',
+        //     'MotherMname'=>'string','min:3',
+        //     'MotherLName'=>'required','string','min:3',
+        //     'MotherEmail'=>'email','min:3',
+        //     'MotherMobile'=>'required','numeric','min:10',
+        //     'MotherTel'=>'numeric','min:10',
+        //     'MotherIDType'=>'required','exists:identities,name',
+        //     'MotherIDNo'=>'required','string','min:3',
+        //     'MotherCountry'=>'required','exists:countries,name',
+        //     'MotherNationality'=>'required','exists:countries,nationality',
+        //     'MotherProvince'=>'string','min:3',
+        //     'MotherDistrict'=>'string','min:3',
+        //     'MotherCity'=>'string','min:3',
+        //     'MotherCounty'=>'string','min:3',
+        //     'MotherSubcounty'=>'string','min:3',
+        //     'MotherParish'=>'string','min:3',
+        //     'MotherAddress'=>'text','min:30',
+        //     'MotherPhoto'=>'mime:jpeg,jpg,png','max:2048',
+        //     ]);
+
+        // }
+
+        // if($request->livewith =='father'){
+        //     $livefather=$request->validate([
+        //         'FatherFname'=>'required','string','min:3',
+        //         'FatherMname'=>'string','min:3',
+        //         'FatherLName'=>'required','string','min:3',
+        //         'FatherEmail'=>'email','min:3',
+        //         'FatherMobile'=>'required','numeric','min:10',
+        //         'FatherTel'=>'numeric','min:10',
+        //         'FatherIDType'=>'required','exists:identities,name',
+        //         'FatherIDNo'=>'required','string','min:3',
+        //         'FatherCountry'=>'required','exists:countries,name',
+        //         'FatherNationality'=>'required','exists:countries,nationality',
+        //         'FatherProvince'=>'string','min:3',
+        //         'FatherDistrict'=>'string','min:3',
+        //         'FatherCity'=>'string','min:3',
+        //         'FatherCounty'=>'string','min:3',
+        //         'FatherSubcounty'=>'string','min:3',
+        //         'FatherParish'=>'string','min:3',
+        //         'FatherAddress'=>'text','min:30',
+        //         'FatherPhoto'=>'mime:jpeg,jpg,png','max:2048'
+        //     ]);
+
+        // }
+
+        // if($request->livewith =='mother'){
+        //     $livemother=$$request->validate([
+        //         'MotherFname'=>'required','string','min:3',
+        //         'MotherMname'=>'string','min:3',
+        //         'MotherLName'=>'required','string','min:3',
+        //         'MotherEmail'=>'email','min:3',
+        //         'MotherMobile'=>'required','numeric','min:10',
+        //         'MotherTel'=>'numeric','min:10',
+        //         'MotherIDType'=>'required','exists:identities,name',
+        //         'MotherIDNo'=>'required','string','min:3',
+        //         'MotherCountry'=>'required','exists:countries,name',
+        //         'MotherNationality'=>'required','exists:countries,nationality',
+        //         'MotherProvince'=>'string','min:3',
+        //         'MotherDistrict'=>'string','min:3',
+        //         'MotherCity'=>'string','min:3',
+        //         'MotherCounty'=>'string','min:3',
+        //         'MotherSubcounty'=>'string','min:3',
+        //         'MotherParish'=>'string','min:3',
+        //         'MotherAddress'=>'text','min:30',
+        //         'MotherPhoto'=>'mime:jpeg,jpg,png','max:2048',
+        //     ]);
+
+        // }
+
+        // if($request->livewith =='other'){
+        //     $liveother=$$request->validate([
+        //         'GuardFname'=>'required','string','min:3',
+        //         'GuardMname'=>'string','min:3',
+        //         'GuardLName'=>'required','string','min:3',
+        //         'GuardEmail'=>'email','min:3',
+        //         'GuardMobile'=>'required','numeric','min:10',
+        //         'GuardTel'=>'numeric','min:10',
+        //         'GuardRelation'=>'required','string','exists:relationships,name',
+        //         'GuardIDType'=>'required','exists:identities,name',
+        //         'GuardIDNo'=>'required','string','min:3',
+        //         'GuardCountry'=>'required','exists:countries,name',
+        //         'GuardNationality'=>'required','exists:countries,nationality',
+        //         'GuardProvince'=>'string','min:3',
+        //         'GuardDistrict'=>'string','min:3',
+        //         'GuardCity'=>'string','min:3',
+        //         'GuardCounty'=>'string','min:3',
+        //         'GuardSubcounty'=>'string','min:3',
+        //         'GuardParish'=>'string','min:3',
+        //         'GuardAddress'=>'text','min:30',
+        //         'GuardPhoto'=>'mime:jpeg,jpg,png','max:2048',
+        //     ]);
+
+        // }
+
+        // if($request->stdclass ==1){
+        //     $stdple=$request->validate([
+        //     // // ----ple----
+        //         'pleSchool'=>'min:3','string',
+        //         'pleYear'=>'max:4','numeric',
+        //         'pleIndex'=>'min:6','string',
+        //         'pleEng'=>'max:1','numeric',
+        //         'pleMath'=>'max:1','numeric',
+        //         'pleScience'=>'max:1','numeric',
+        //         'pleSST'=>'max:1','numeric',
+        //         'pleAggs'=>'max:2','numeric',
+        //         'pleDivision'=>'exists:divisions,name'
+        //     ]);
+        // }
+
+        // if($request-> stdclass ==5){
+        //     $stduce=$request->validate([
+        //         // // --- uce ---
+        //         'uceSchool'=>'min:3','string',
+        //         'uceYear'=>'numeric','max:4',
+        //         'uceIndex'=>'min:7','string',
+        //         'uceAgg'=>'numeric','max:2',
+        //         'uceDivision'=>'exists:divisions,name',
+        //         'uceSubjects'=>'required','array','min:3',
+        //         'uceSubjects.*'=>'required','array','min:3','distinct',
+        //         'OlSelected'=>'required','array','min:3',
+        //         'OlSelected.*'=>'required','array','min:3','distinct',
+        //     ]);
+        // }
+
+        // if($request-> stdclass>4){
+        //     $stream=$request->validate([
+        //         'stdstream'=>'required','exists:streams,name',
+        //         'stdcomb'=>'required','exists:alevel_combs,name',
+        //     ]);
+        // }
+
+        // if($request->stdmedical==1){
+        //    $medical=$request->validate([
+        //     // ---- step6 ---- (medical)
+        //     'medicalName'=>'string','required','min:5',
+        //     'medicalDescription' =>'text','required','min:20',
+        //     ]);
+        // }
+//         if()
+// $student=Students::create([
+//   'name'=>$request->stdfirst_name .=>$request->stdlasst_name
+//   'email'=>$request-> stdmiddle_name
+//   'dob'=>$request-> stdDOB
+//   'gender'=>$request->stdGender
+  // 'bothparents'=>$request->
+  // 'livingwith'=>$request->
+  // 'religion_id'=>$request->
+  // 'class_id'=>$request->
+  // 'stream_id'=>$request->
+  // 'year_id'=>$request->
+  // 'term_id'=>$request->
+  // 'country_id'=>$request->
+  // 'nationality_id'=>$request->
+  // 'admitted'=>$request->
+  // 'level_id'=>$request->
+  // 'section_id'=>$request->
+  // 'admittedOn'=>$request->
+  // 'condition'=>$request->
+  // 'stdPhoto'=>$request->
+  // 'official_comments'=>$request->
+// ])
+//
+        // dd($liveboth);
+        // dd($livefather);
+        // dd($livemother);
+        // dd($liveother);
+        // dd($stdclass);
+        // dd($stduce);
+        // dd($stdple);
+        // dd($stream);
+        // dd($medical);

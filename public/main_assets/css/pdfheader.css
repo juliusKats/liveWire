@@ -1,0 +1,28 @@
+@page{
+    margin: 100px 25px;
+}
+header {
+position: fixed;
+top: -60px;
+right:0px;
+left:0px;
+height:50px;
+font-size: 20px !important;
+background-color: blue;
+color: azure;
+text-align: center;
+line-height: 35px;
+}
+
+footer {
+    position: fixed;
+    bottom: -60px;
+    right:0px;
+    left:0px;
+    height:50px;
+    font-size: 20px !important;
+    background-color: blue;
+    color: azure;
+    text-align: center;
+    line-height: 35px;
+    }
