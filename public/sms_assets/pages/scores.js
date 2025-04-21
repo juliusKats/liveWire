@@ -242,15 +242,55 @@ $(document).ready(function () {
 
     $('#paper').on('change',function(){
         var paperId = this.value;
+        var exam=document.getElementById('examset')
         var streamId = document.getElementById('stream').value
         var yearId = document.getElementById('year').value
         var termId = document.getElementById('year').value
         var levelId = document.getElementById('level').value
         var classId = document.getElementById('class').value
-
         var subjectId = document.getElementById('subject').value;
-        console.log(paperId);
-        console.log(subjectId);
+        var URL ='http://127.0.0.1:8000/api/fetch/objectives'
+        $('#objective').html('')
+
+        console.log(yearId)
+        console.log(termId)
+        console.log(levelId)
+        console.log(classId)
+        console.log(streamId)
+        console.log(subjectId)
+        console.log(paperId)
+
+        $.ajax({
+            url:URL,
+            type:'GET',
+            data:{
+                _token:'{{csrf_token()}}',
+                subject_id:subjectId,
+                paper_id:paperId,
+                stream_id:streamId,
+                year_id:yearId,
+                term_id:termId,
+                level_id:levelId,
+                class_id:classId,
+            },
+            dataType:'json',
+            success: function(result){
+                console.log(result)
+
+                $('#objective').html('<option value="0">-- Select Objective--</option>');
+                $.each(result.objectives, function (key, value) {
+                    $("#objective").append('<option value="' + value
+                        .id + '">' +value.objective + '</option>');
+                });
+        
+                // $('#objective').html('<option value="">-- Select Objective --</option>');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+                alert('An error occurred while fetching data. Please try again.');
+            }
+        });
+
     })
     $('#objective').on('change',function(){
         var objective_id = this.value;

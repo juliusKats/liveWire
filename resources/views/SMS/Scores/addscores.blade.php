@@ -77,16 +77,11 @@
 
                                     <div class="form-group col-6">
                                         <label>Objectives</label><br>
-                                        <select name="objective" id="objective" class="form-control select2" >{{ old('paper') }}
-                                            <option value="0"> --- Select Objective --- </option>
-                                            @foreach ($objectives as $item)
-                                            <option value="{{$item->id}}">{{$item->objective}} </option>
-                                            @endforeach
-                                        </select>
+                                        <select name="objective" id="objective" class="form-control select2" >{{ old('objective') }}</select>
                                     </div>
                                     <div class="form-group col-6">
                                         <label>Exam Set</label><br>
-                                        <select name="examset" id="exam" class="form-control select2" >{{ old('level') }}
+                                        <select name="examset" id="exam" class="form-control select2">{{ old('examset') }}
                                             <option value="0"> ---- select Exam Set ---- </option>
                                             @foreach ($examsets as $item)
                                             <option value="{{$item->id}}"> {{$item->name}}</option>

@@ -28,7 +28,7 @@ return new class extends Migration
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
             $table->foreign('year_id')->references('id')->on('years')->onDelete('cascade');
             $table->foreign('term_id')->references('id')->on('terms')->onDelete('cascade');
-            $table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');
+            $table->foreign('level_id')->references('id')->on('subject_levels')->onDelete('cascade');
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
             $table->foreign('stream_id')->references('id')->on('streams')->onDelete('cascade');
             $table->foreign('paper_id')->references('id')->on('papers')->onDelete('cascade');

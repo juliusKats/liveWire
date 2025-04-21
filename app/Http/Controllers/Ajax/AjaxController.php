@@ -75,16 +75,16 @@ class AjaxController extends Controller
         // ->join('subjects','subject_levels.subject_id', '=' ,'subjects.id')
         // student_id`, `level_id`, `class_id`, `subject_id`, `stream_id`
  $subject['subjects']=DB::table('student_subjects')
-    ->select('subject_levels.id as subj','student_subjects.student_id', 'student_subjects.year_id', 'student_subjects.level_id', 'student_subjects.class_id', 'student_subjects.subject_id', 'student_subjects.stream_id', 'subject_level_class_streams.subject_id', 'subject_levels.code','subjects.name')
+    ->select('subject_levels.subject_id as subj','student_subjects.student_id', 'student_subjects.year_id', 'student_subjects.level_id', 'student_subjects.class_id', 'student_subjects.subject_id', 'student_subjects.stream_id', 'subject_level_class_streams.subject_id', 'subject_levels.code','subjects.name')
     ->join('subject_level_class_streams','student_subjects.subject_id','=','subject_level_class_streams.id')
     ->join('subject_level_classes','subject_level_class_streams.subject_id','=','subject_level_classes.id')
     ->join('subject_levels','subject_level_classes.subject_id','=','subject_levels.id')
     ->join('subjects','subject_levels.subject_id','=','subjects.id')
     ->where('student_subjects.year_id','=',$request->year_id)
-    ->where('student_subjects.level_id','=',$request->level_id)
-    ->where('student_subjects.class_id','=',$request->class_id)
-    ->where('student_subjects.stream_id','=',$request->stream_id)
-    ->where('student_subjects.student_id','=',$request->student_id)
+    // ->where('student_subjects.level_id','=',$request->level_id)
+    // ->where('student_subjects.class_id','=',$request->class_id)
+    // ->where('student_subjects.stream_id','=',$request->stream_id)
+    // ->where('student_subjects.student_id','=',$request->student_id)
     ->get();
     return response()->json($subject);
 
@@ -97,6 +97,21 @@ class AjaxController extends Controller
         ->where('subject_papers.subject_id','=',$request->subject_id)
         ->get();
         return response()->json($paper);
+    }
+
+    public function fetchObjectives(Request $request){
+        $objective['objectives']=DB::table('subject_objectives')
+        ->select('subject_objectives.year_id', 'subject_objectives.term_id', 'subject_objectives.level_id', 'subject_objectives.class_id', 'subject_objectives.stream_id', 'subject_objectives.subject_id', 'subject_objectives.paper_id', 'subject_objectives.objective', 'subject_objectives.details') // FROM `subject_objectives` 
+        ->join('subject_levels','subject_objectives.subject_id','=','subject_levels.subject_id')
+        ->where('subject_objectives.year_id','=',$request->year_id)
+        ->where('subject_objectives.term_id','=',$request->term_id)
+        ->where('subject_objectives.level_id','=',$request->level_id)
+        ->where('subject_objectives.class_id','=',$request->class_id)
+        ->where('subject_objectives.stream_id','=',$request->stream_id)
+        ->where('subject_objectives.subject_id','=',$request->student_id)
+        ->where('subject_objectives.paper_id','=',$request->paper_id)
+        ->get();
+        return response()->json($objective);
     }
 }
 
