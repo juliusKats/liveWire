@@ -13,18 +13,25 @@ return new class extends Migration
     {
         Schema::create('subject_objectives', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('level_id');
+            $table->unsignedBigInteger('year_id');
             $table->unsignedBigInteger('term_id');
+            $table->unsignedBigInteger('level_id');
+            $table->unsignedBigInteger('class_id');
+            $table->unsignedBigInteger('stream_id');
             $table->unsignedBigInteger('subject_id');
+            $table->unsignedBigInteger('paper_id')->nullable();
             $table->string('objective');
             $table->string('details')->nullable();
-            $table->unique(['subject_id','objective','level_id']);
-            $table->unique(['subject_id','term_id','level_id']);
+            $table->unique(['year_id','term_id','level_id','class_id','stream_id','subject_id','paper_id','objective'],'objectives');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreign('subject_id')->references('id')->on('subject_id')->onDelete('cascade');
+            $table->foreign('year_id')->references('id')->on('years')->onDelete('cascade');
             $table->foreign('term_id')->references('id')->on('terms')->onDelete('cascade');
             $table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');
+            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
+            $table->foreign('stream_id')->references('id')->on('streams')->onDelete('cascade');
+            $table->foreign('paper_id')->references('id')->on('papers')->onDelete('cascade');
         });
     }
 
