@@ -25,7 +25,7 @@ return new class extends Migration
             $table->unique(['year_id','term_id','level_id','class_id','stream_id','subject_id','paper_id','objective'],'objectives');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('subject_id')->references('id')->on('subject_id')->onDelete('cascade');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
             $table->foreign('year_id')->references('id')->on('years')->onDelete('cascade');
             $table->foreign('term_id')->references('id')->on('terms')->onDelete('cascade');
             $table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');
