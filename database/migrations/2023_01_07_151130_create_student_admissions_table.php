@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('stream_id')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
-            $table->unique(['student_id','class_id']);
+            $table->unique(['student_id','class_id','year_id']);
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->foreign('level_id')->references('id')->on('levels')->onDelete('cascade');
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
