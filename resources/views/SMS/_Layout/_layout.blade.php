@@ -104,6 +104,7 @@
 <script src="{{ asset('sms_assets/pages/steps.js') }}"></script>
 <script src="{{ asset('sms_assets/pages/student-register.js') }}"></script>
 <script src="{{asset('sms_assets/pages/submit.js')}}"></script>
+<script src="{{asset('sms_assets/pages/scores.js')}}"></script>
 
 @yield('scripts')
 

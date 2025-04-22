@@ -18,16 +18,16 @@
                     </div>
                 @endif
 
-                 <form method="post" action="{{ route('class.streams.save_class') }}">
+                 <form method="post" action="{{ route('streams.class.save_class') }}">
             @csrf
                 <div class="form-group">
-                    <label>Class Name</label>
-                    <input type="text" class="form-control" name="classname">
+                    <label>Stream Name</label>
+                    <input type="text" class="form-control" name="streamname">
                     @error('streamname')@enderror
                 </div>
                 <div class="form-group">
                     <label>Short Name</label>
-                    <input type="text" class="form-control" name="classabbrev">
+                    <input type="text" class="form-control" name="streamabbrev">
                     @error('streamabbrev')@enderror
                 </div>
                 <div class="form-group"><br>

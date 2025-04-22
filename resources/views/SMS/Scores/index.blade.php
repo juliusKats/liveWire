@@ -54,7 +54,7 @@
                                             <td>{{ $score->student_id}}</td>
                                             <td>{{ $score->year_id}}</td>
                                             <td>{{ $score->term_id}}</td>
-                                            <td>{{ $score->stdscores->name}}</td>
+                                            <td>{{ $score->level_id}}</td>
                                             <td>{{ $score->class_id}}</td>
                                             <td>{{ $score->stream_id}}</td>
                                             <td>{{ $score->subject_id}}</td>

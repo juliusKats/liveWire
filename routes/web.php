@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\Auth\UserProfileController;
+use App\Http\Controllers\SMS\Setting\Classes\ClassStreamController;
 use App\Http\Controllers\SMS\Student\StudentController;
 use App\Http\Controllers\SMS\Student\StudentScoresController;
 use Illuminate\Support\Facades\Route;
@@ -16,7 +17,7 @@ use App\Http\Controllers\Ajax\AjaxController;
 use Laravel\Fortify\RoutePath;
 use App\Http\Controllers\SMS\Setting\General\GeneralController;
 
-use App\Livewire\StudentRegister;
+
 // api controller
 
 Route::get('/', function () {
@@ -225,6 +226,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
 {
     Route::prefix('SMS/Student/Management')->group(function() {
 
+
         Route::controller(StudentController::class)->group(function () {
             Route::get('Student/Registration','index')->name('student.index');
             Route::post('Student/Save/Registration','saveRegistration')->name('student.register.save');
@@ -251,10 +253,19 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
 
         });
 
+        Route::controller(ClassStreamController::class)->group(function(){
+            Route::get('/class/streams/index','index')->name('class.streams.index');
+            Route::get('/class/streams/save/Class','saveClass')->name('class.save');
+            Route::get('/class/streams/save/Stream','saveStream')->name('stream.save');
+            Route::post('class/streams/save','save_class')->name('class.streams.save_class');
+            Route::post('streams/class/save','save_stream')->name('streams.class.save_class');
+        });
+
         Route::controller(StudentScoresController::class)->group(function () {
             Route::get('scores/list', 'index')->name('scores.list');
             Route::get('add/scores', 'create')->name('add.scores');
             Route::post('save/scores', 'store')->name('save.scores');
+
         });
     });
 

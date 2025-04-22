@@ -15,19 +15,16 @@ class Levels extends Model
     //
     protected $fillable=['name','abbrev'];
     public function level(){
-        return $this->hasMany(SubjectLevels::class);
+        return $this->hasMany(SubjectLevel::class);
     }
     public function students(){
         return $this->hasMany(Students::class);
-    }
-    public function streamlevel(){
-        return $this->hasMany(StreamLevel::class);
     }
 
     public function stdscores(){
         return $this->hasMany(StudentScores::class,'level_id','id');
     }
-    
+
 
 }
 

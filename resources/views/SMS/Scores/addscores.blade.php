@@ -1,6 +1,6 @@
 @extends('SMS._layout._layout')
 @section('title')
-    Academic Managemnt
+    Add Scores
 @endsection
 @section('content')
     <section class="section">
@@ -129,5 +129,4 @@
 @endsection
 
 @section('scripts')
-<script src="{{asset('sms_assets/pages/scores.js')}}"></script>
 @endsection

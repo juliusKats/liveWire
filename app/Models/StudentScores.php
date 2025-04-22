@@ -13,10 +13,10 @@ class StudentScores extends Model
     'year_id','stream_id','term_id','grade_id',
     'examset_id','paper_id','objective_id','subject_id','score'];
 
-    public function levels(){
+    public function leveled(){
         return $this->belongsTo(Levels::class,'level_d','id');
     }
-   
+
     public function students(){
         return $this->belongsTo(Students::class);
     }
