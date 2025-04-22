@@ -14,13 +14,18 @@ $(document).ready(function () {
 
     var alertTxt = document.getElementById('alertText')
     var errorbx= document.getElementById ('errorbox')
+    var btnsave = document.getElementById ('btnsave')
 
    $('#year').on('change',function(){
         var yearId = this.value;
         if (!yearId || yearId === "0") {
-            alert('Please select a valid Year.');
-            return;
-        }
+        errorbx.removeAttribute('hidden','hidden')
+        alertTxt.innerText ="Please select a valid Year"
+    }
+    else{
+        errorbx.setAttribute('hidden','hidden')
+        alertTxt.innerText =""
+    }
         $('#term').html('');
 
         var subURL='http://127.0.0.1:8000/api/fetch/year/term';
@@ -42,18 +47,43 @@ $(document).ready(function () {
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                alert('An error occurred while fetching data. Please try again.');
+                // alert('An error occurred while fetching data. Please try again.');
+                if (error){
+                    errorbx.removeAttribute('hidden','hidden')
+                    alertTxt.innerText ='An error occurred while fetching data. Please try again.'
+                }
+                else{
+                    errorbx.setAttribute('hidden','hidden')
+                    alertTxt.innerText =""
+                }
+
             }
         })
 
 
     })
 
+    $('#term').on('change',function(){
+        var termId = this.value;
+        if (!termId || termId === "0") {
+            errorbx.removeAttribute('hidden','hidden')
+            alertTxt.innerText ="Please select a valid term"
+        }
+        else{
+            errorbx.setAttribute('hidden','hidden')
+            alertTxt.innerText =""
+        }
+    });
+
     $('#level').on('change',function(){
         var levelId = this.value;
         if (!levelId || levelId === "0") {
-            alert('Please select a valid level.');
-            return;
+            errorbx.removeAttribute('hidden','hidden')
+            alertTxt.innerText ="Please select a valid level "
+        }
+        else{
+            errorbx.setAttribute('hidden','hidden')
+            alertTxt.innerText =""
         }
         var URL ='http://127.0.0.1:8000/api/fetch/level/class'
         $('#class').html('');
@@ -78,15 +108,28 @@ $(document).ready(function () {
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                alert('An error occurred while fetching data. Please try again.');
+                // alert('An error occurred while fetching data. Please try again.');
+                if (error){
+                    errorbx.removeAttribute('hidden','hidden')
+                    alertTxt.innerText ='An error occurred while fetching data. Please try again.'
+                }
+                else{
+                    errorbx.setAttribute('hidden','hidden')
+                    alertTxt.innerText =""
+                }
             }
         });
     })
     $('#class').on('change',function(){
         var classId = this.value;
         if (!classId || classId === "0") {
-            alert('Please select a valid Class.');
-            return;
+
+            errorbx.removeAttribute('hidden','hidden')
+            alertTxt.innerText ="Please select a valid class d"
+        }
+        else{
+            errorbx.setAttribute('hidden','hidden')
+            alertTxt.innerText =""
         }
         var URL ='http://127.0.0.1:8000/api/fetch/class/stream'
         $.ajax({
@@ -108,8 +151,15 @@ $(document).ready(function () {
                 $('#student').html('<option value="">-- Select Student --</option>');
             },
             error: function(xhr, status, error) {
-                console.error('Error:', error);
-                alert('An error occurred while fetching data. Please try again.');
+                // alert('An error occurred while fetching data. Please try again.');
+                if (error){
+                    errorbx.removeAttribute('hidden','hidden')
+                    alertTxt.innerText ='An error occurred while fetching data. Please try again.'
+                }
+                else{
+                    errorbx.setAttribute('hidden','hidden')
+                    alertTxt.innerText =""
+                }
             }
         });
     })
@@ -117,12 +167,12 @@ $(document).ready(function () {
         var streamId = this.value;
         var classId = document.getElementById('class').value
         if (!streamId || streamId === "0") {
-            alert('Please select a valid stream.');
-            return;
+            errorbx.removeAttribute('hidden','hidden')
+            alertTxt.innerText ="Please select a valid stream d"
         }
-        if (!classId || classId === "0") {
-            alert('Please select a valid Class.');
-            return;
+        else{
+            errorbx.setAttribute('hidden','hidden')
+            alertTxt.innerText =""
         }
 
          var URL ='http://127.0.0.1:8000/api/fetch/class/student'
@@ -159,25 +209,13 @@ $(document).ready(function () {
         var levelId = document.getElementById('level').value
         var classId = document.getElementById('class').value
 
-        if (!classId || classId === "0") {
-            alert('Please select a valid Class.');
-            return;
-        }
-        if (!levelId || levelId === "0") {
-            alert('Please select a valid level.');
-            return;
-        }
-        if (!yearId || yearId === "0") {
-            alert('Please select a valid year.');
-            return;
-        }
-        if (!streamId || streamId === "0") {
-            alert('Please select a valid year.');
-            return;
-        }
         if (!studentId || studentId === "0") {
-            alert('Please select a valid year.');
-            return;
+            errorbx.removeAttribute('hidden','hidden')
+            alertTxt.innerText ="Please select a valid student"
+        }
+        else{
+            errorbx.setAttribute('hidden','hidden')
+            alertTxt.innerText =""
         }
 
         var URL ='http://127.0.0.1:8000/api/fetch/student/subject'
@@ -206,14 +244,29 @@ $(document).ready(function () {
                 $('#paper').html('<option value="">-- Select Student --</option>');
             },
             error: function(xhr, status, error) {
-                console.error('Error:', error);
-                alert('An error occurred while fetching data. Please try again.');
+                // alert('An error occurred while fetching data. Please try again.');
+                if (error){
+                    errorbx.removeAttribute('hidden','hidden')
+                    alertTxt.innerText ='An error occurred while fetching data. Please try again.'
+                }
+                else{
+                    errorbx.setAttribute('hidden','hidden')
+                    alertTxt.innerText =""
+                }
             }
         });
 
     })
     $('#subject').on('change',function(){
         var subjectId = this.value;
+        if (!subjectId || subjectId === "0") {
+            errorbx.removeAttribute('hidden','hidden')
+            alertTxt.innerText ="Please select a valid subject"
+        }
+        else{
+            errorbx.setAttribute('hidden','hidden')
+            alertTxt.innerText =""
+        }
         var URL ='http://127.0.0.1:8000/api/fetch/subject/paper'
         $('#paper').html('')
         console.log(subjectId);
@@ -236,8 +289,15 @@ $(document).ready(function () {
                 $('#objective').html('<option value="">-- Select Objective --</option>');
             },
             error: function(xhr, status, error) {
-                console.error('Error:', error);
-                alert('An error occurred while fetching data. Please try again.');
+              // alert('An error occurred while fetching data. Please try again.');
+              if (error){
+                errorbx.removeAttribute('hidden','hidden')
+                alertTxt.innerText ='An error occurred while fetching data. Please try again.'
+            }
+            else{
+                errorbx.setAttribute('hidden','hidden')
+                alertTxt.innerText =""
+            }
             }
         });
     })
@@ -245,13 +305,20 @@ $(document).ready(function () {
 
     $('#paper').on('change',function(){
         var paperId = this.value;
-        var exam=document.getElementById('examset')
         var streamId = document.getElementById('stream').value
         var yearId = document.getElementById('year').value
-        var termId = document.getElementById('year').value
+        var termId = document.getElementById('term').value
         var levelId = document.getElementById('level').value
         var classId = document.getElementById('class').value
         var subjectId = document.getElementById('subject').value;
+        if (!paperId || paperId === "0") {
+            errorbx.removeAttribute('hidden','hidden')
+            alertTxt.innerText ="Please select a valid Paper"
+        }
+        else{
+            errorbx.setAttribute('hidden','hidden')
+            alertTxt.innerText =""
+        }
         var URL ='http://127.0.0.1:8000/api/fetch/objectives'
         $('#objective').html('')
 
@@ -290,14 +357,29 @@ $(document).ready(function () {
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                alert('An error occurred while fetching data. Please try again.');
+                // alert('An error occurred while fetching data. Please try again.');
+                if (error){
+                    errorbx.removeAttribute('hidden','hidden')
+                    alertTxt.innerText ='An error occurred while fetching data. Please try again.'
+                }
+                else{
+                    errorbx.setAttribute('hidden','hidden')
+                    alertTxt.innerText =""
+                }
             }
         });
 
     })
     $('#objective').on('change',function(){
-        var objective_id = this.value;
-        console.log(objective_id);
+        var objId = this.value;
+        if (!objId || objId === "0") {
+            errorbx.removeAttribute('hidden','hidden')
+            alertTxt.innerText ="Please select a valid objective"
+        }
+        else{
+            errorbx.setAttribute('hidden','hidden')
+            alertTxt.innerText =""
+        }
     })
     $('#examset').on('change',function(){
         var examId = this.value;
@@ -305,13 +387,18 @@ $(document).ready(function () {
         var yearId = document.getElementById('year').value
         var scoremax =document.getElementById('maxscore')
 
-        console.log(termId)
-        console.log(yearId)
-        console.log(examId)
+        if (!examId || examId === "0") {
+            errorbx.removeAttribute('hidden','hidden')
+            alertTxt.innerText ="Please select a valid Exam Set"
+        }
+        else{
+            errorbx.setAttribute('hidden','hidden')
+            alertTxt.innerText =""
+        }
         var URL ='http://127.0.0.1:8000/api/fetch/max/score'
 
-
-        scoremax.value == 0
+        scoremax.value === 0
+        scoremax.innerText === 0
         $.ajax({
             url:URL,
             type:'GET',
@@ -334,15 +421,35 @@ $(document).ready(function () {
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);
-                alert('An error occurred while fetching data. Please try again.');
+                // alert('An error occurred while fetching data. Please try again.');
+                if (error){
+                    errorbx.removeAttribute('hidden','hidden')
+                    alertTxt.innerText ='An error occurred while fetching data. Please try again.'
+                }
+                else{
+                    errorbx.setAttribute('hidden','hidden')
+                    alertTxt.innerText =""
+                }
             }
         });
 
 
     })
     $('#score').on('keyup',function(){
-        var scoreId =parseInt(this.value);
         var scoremax = parseInt(document.getElementById('maxscore').value)
+        var scoreId =parseInt(this.value);
+        var URL ='http://127.0.0.1:8000/api/fetch/exist/student/score';
+
+        var yearId = document.getElementById('year').value
+        var termId = document.getElementById('term').value
+        var levelId = document.getElementById('level').value
+        var classId = document.getElementById('class').value
+        var streamId = document.getElementById('stream').value
+        var subjectId = document.getElementById('subject').value;
+        var objectiveId = document.getElementById('objective').value;
+        var paperId = document.getElementById('paper').value;
+        var examId = document.getElementById('examset').value;
+        var studentId = document.getElementById('student').value;
 
         console.log(scoreId);
         if(scoreId < 0 || scoreId > scoremax){
@@ -353,6 +460,49 @@ $(document).ready(function () {
             errorbx.setAttribute('hidden','hidden')
             alertTxt.innerText =""
         }
+        $.ajax({
+            url:URL,
+            type:'GET',
+            data:{
+                _token:'{{csrf_token()}}',
+                subject_id:subjectId,
+                paper_id:paperId,
+                year_id:yearId,
+                term_id:termId,
+                class_id:classId,
+                level_id:levelId,
+                stream_id:streamId,
+                objective_id:objectiveId,
+                exam_id:examId,
+                student_id:studentId,
+            },
+            dataType:'json',
+            success: function(result){
+                if(result.stdscores.length > 0){
+                    errorbx.removeAttribute('hidden','hidden')
+                    alertTxt.innerText ="Student with the selected information exists."
+                    btnsave.setAttribute('hidden','hidden')
+                }
+                else{
+                    errorbx.setAttribute('hidden','hidden')
+                    alertTxt.innerText =""
+                    btnsave.removeAttribute('hidden','hidden')
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+                // alert('An error occurred while fetching data. Please try again.');
+                if (error){
+                    errorbx.removeAttribute('hidden','hidden')
+                    alertTxt.innerText ='An error occurred while fetching data. Please try again.'
+                }
+                else{
+                    errorbx.setAttribute('hidden','hidden')
+                    alertTxt.innerText =""
+                }
+            }
+        });
+
     })
     $('#grade').on('change',function(){
         var grade_id = this.value;

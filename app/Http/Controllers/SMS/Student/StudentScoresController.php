@@ -85,11 +85,26 @@ class StudentScoresController extends Controller
         $request->objective == 0 or
         $request->score == null or
         $request->grade == 0){
-            dd("all fields are required");
+
         }
         else{
-            dd($request->all());
+            // dd($request->all());
+            $stdscore=StudentScores::create([
+            'year_id'=>$request->year,
+            'term_id'=>$request->term,
+            'level_id'=>$request->level,
+            'class_id'=>$request->class,
+            'stream_id'=>$request->stream,
+            'student_id'=>$request->student,
+            'subject_id'=>$request->subject,
+            'paper_id'=>$request->paper,
+            'objective_id'=>$request->objective,
+            'examset_id'=>$request->examset,
+            'score'=>$request->maxscore,
+            'grade_id'=>$request->grade,
+            ]);
         }
+        return redirect('scores/list');
 
     }
 

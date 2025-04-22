@@ -22,7 +22,7 @@
                             <div hidden="hidden" id="errorbox" class="col-md-12 col-12 alert alert-danger alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                                 <h6 id="alertText"></h6>
-                            </div>    
+                            </div>
                             <form  method="post" action="{{ route('save.scores') }}">
                                 @csrf
                                 <div class="form-group row">
@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="form-group col-9">
-                                        <input type="submit" class="btn btn-lg btn-success" Value="Save Scores">
+                                        <input type="submit" class="btn btn-lg btn-success" Value="Save Scores" id="btnsave" hidden="hidden">
                                     </div>
                                     <div class="form-group col-3">
                                         <input name="maxscore" class="form-control"id="maxscore" type="number" readonly hidden="hidden">

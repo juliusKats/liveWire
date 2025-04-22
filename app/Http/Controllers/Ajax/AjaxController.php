@@ -11,6 +11,7 @@ use App\Models\CityFinal;
 use App\Models\ClassStream;
 use App\Models\LevelClass;
 use App\Models\Terms;
+use App\Models\ExamSetScores;
 
 class AjaxController extends Controller
 {
@@ -95,7 +96,7 @@ class AjaxController extends Controller
 
     public function fetchObjectives(Request $request){
         $objective['objectives']=DB::table('subject_objectives')
-        ->select('subject_objectives.year_id', 'subject_objectives.term_id', 'subject_objectives.level_id', 'subject_objectives.class_id', 'subject_objectives.stream_id', 'subject_objectives.subject_id', 'subject_objectives.paper_id', 'subject_objectives.objective', 'subject_objectives.details') // FROM `subject_objectives`
+        ->select('subject_objectives.id','subject_objectives.year_id', 'subject_objectives.term_id', 'subject_objectives.level_id', 'subject_objectives.class_id', 'subject_objectives.stream_id', 'subject_objectives.subject_id', 'subject_objectives.paper_id', 'subject_objectives.objective', 'subject_objectives.details') // FROM `subject_objectives`
         ->join('subject_levels','subject_objectives.subject_id','=','subject_levels.subject_id')
         ->where('subject_objectives.year_id','=',$request->year_id)
         ->where('subject_objectives.term_id','=',$request->term_id)
@@ -116,6 +117,22 @@ class AjaxController extends Controller
         ->where('exam_id','=',$request->exam_id)
         ->get();
         return response()->json($score);
+    }
+    public function fetchexiststudentscore(Request $request){
+        $stdscore['stdscores']=DB::table('student_scores')
+        ->select ('level_id','student_id','class_id','year_id','stream_id','term_id','subject_id','examset_id','objective_id','paper_id','grade_id','score')
+        ->where('year_id','=',$request->year_id)
+        ->where('term_id','=',$request->term_id)
+        ->where('level_id','=',$request->level_id)
+        ->where('class_id','=',$request->class_id)
+        ->where('stream_id','=',$request->stream_id)
+        ->where('student_id','=',$request->student_id)
+        ->where('subject_id','=',$request->subject_id)
+        ->where('paper_id','=',$request->paper_id)
+        ->where('objective_id','=',$request->objective_id)
+        ->where('examset_id','=',$request->exam_id)
+        ->get();
+        return response()->json($stdscore);
     }
 }
 

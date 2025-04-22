@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\StreamLevel;
 use App\Models\SubjectLevels;
 use App\Models\Students;
+use App\Models\StudentScores;
 
 class Levels extends Model
 {
@@ -22,6 +23,11 @@ class Levels extends Model
     public function streamlevel(){
         return $this->hasMany(StreamLevel::class);
     }
+
+    public function stdscores(){
+        return $this->hasMany(StudentScores::class,'level_id','id');
+    }
+    
 
 }
 
