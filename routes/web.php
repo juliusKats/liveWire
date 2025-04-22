@@ -259,6 +259,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
             Route::get('/class/streams/save/Stream','saveStream')->name('stream.save');
             Route::post('class/streams/save','save_class')->name('class.streams.save_class');
             Route::post('streams/class/save','save_stream')->name('streams.class.save_class');
+            Route::get('/class/edit/{id}/stream','edit_stream')->name('edit.stream');
+            Route::get('/class/edit/{id}/class','edit_class')->name('edit.class');
+            Route::put('/class/update/{id}/stream','update_stream')->name('update.stream');
+            Route::put('/class/update/{id}/class','update_class')->name('update.class');
+            Route::delete('/class/delete/{id}/stream','delete_stream')->name('delete.stream');
+            Route::delete('/class/delete/{id}/class','delete_class')->name('delete.class');
         });
 
         Route::controller(StudentScoresController::class)->group(function () {

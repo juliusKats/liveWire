@@ -26,12 +26,10 @@ class ClassStreamController extends Controller
     }
     public function save_class(Request $request){
         $data =$request->validate([
-            'classname'=>[Rule::enum(Classes::class)],
-            'classabbrev'=>'string','max:3'
+            'classname'=>'required|string|min:3|max:15|unique:classes,name',
+            'classabbrev'=>'string|max:3'
         ]);
-        if($request->classname = null){
-            return redirect()->back()->with('error','A subject name is required. Try aganin');
-        }
+
 
             $existclass =DB::table('classes')->select('name','abbrev')->where('name','=',$request->classname)->get();
             $existclassabbrev =DB::table('classes')->select('name','abbrev')->where('abbrev','=',$request->classabbrev)->where('name','=',$request->classname)->get();
@@ -54,12 +52,12 @@ class ClassStreamController extends Controller
     public function save_stream(Request $request){
 
             $data =$request->validate([
-                'stream_name'=>'required|string|min:3|max:15|unique:streams,name',
+                'streamname'=>'required|string|min:3|max:15|unique:streams,name',
                 'streamabbrev'=>'string|min:1|max:4'
             ]);
 
-            $existclass =DB::table('streams')->select('name','abbrev')->where('name','=',$request->stream_name)->get();
-            $existclassabbrev =DB::table('streams')->select('name','abbrev')->where('abbrev','=',$request->streamabbrev)->where('name','=',$request->stream_name)->get();
+            $existclass =DB::table('streams')->select('name','abbrev')->where('name','=',$request->streamname)->get();
+            $existclassabbrev =DB::table('streams')->select('name','abbrev')->where('abbrev','=',$request->streamabbrev)->where('name','=',$request->streamname)->get();
 
 
             if(count($existclass)>0){
@@ -70,7 +68,7 @@ class ClassStreamController extends Controller
             }
             else{
                Streams::create([
-                'name'=>$request->stream_name,
+                'name'=>$request->streamname,
                 'abbrev'=>$request->streamabbrev
                ]);
                 return redirect()->route('class.streams.index')->with('success','Class has successfully been added');
@@ -81,15 +79,46 @@ class ClassStreamController extends Controller
     }
 
     public function edit_class(Request $request,$id){
-
-    }
-    public function edit_stream(Request $request, $id){
-
+            $class =SchoolClass::find($id);
+        return view('SMS.Setting.Classes.edit_class',compact('class'));
     }
     public function update_class(Request $request, $id){
+        $data =$request->validate([
+            'classname'=>'required|string|min:3|max:15|unique:classes,name',
+            'classabbrev'=>'string|max:3'
+        ]);
+        $class =SchoolClass::find($id);
+        $class->name = $request->classname;
+        $class->abbrev = $request->classabbrev;
+        $class->save();
+        return redirect()->route('class.streams.index')->with('success', 'Class updated Successfully');
 
     }
-    public function update_stream(Request $request, $id){
+    public function delete_class(Request $request,$id){
+        $class =SchoolClass::find($id);
+        $class->forceDelete();
+        return redirect()->route('class.streams.index')->with('success', 'Class deleted Successfully');
+    }
+    public function edit_stream(Request $request, $id){
+        $stream =Streams::find($id);
+        return view('SMS.Setting.Classes.edit_stream',compact('stream'));
+    }
 
+    public function update_stream(Request $request, $id){
+        $data =$request->validate([
+            'streamname'=>'required|string|min:3|max:15|unique:streams,name',
+            'streamabbrev'=>'string|min:1'
+        ]);
+        $stream =Streams::find($id);
+        $stream->name = $request->streamname;
+        $stream->abbrev = $request->streamabbrev;
+        $stream->save();
+        return redirect()->route('class.streams.index')->with('success', 'Stream updated Successfully');
+
+    }
+    public function delete_stream(Request $request,$id){
+        $stream =Streams::find($id);
+        $stream->delete();
+        return redirect()->route('class.streams.index')->with('success', 'Stream deleted Successfully');
     }
 }

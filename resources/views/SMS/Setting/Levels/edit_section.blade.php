@@ -1,11 +1,11 @@
 @extends('SMS._layout._layout')
 @section('title')
-    Add Stream
+    Edit Stream
 @endsection
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h1>Add Stream</h1>
+        <h1>Edit Stream</h1>
     </div>
     <div class="section-body">
         <div class="row">
@@ -29,17 +29,18 @@
                     </div>
                 @endif
 
-                 <form method="post" action="{{ route('streams.class.save_class') }}">
-            @csrf
+                 <form method="post" action="{{ route('update.stream', $stream->id) }}">
+                    @csrf
+                    @method('PUT')
                 <div class="form-group">
                     <label>Stream Name</label>
-                    <input type="text" class="form-control" name="streamname">
+                    <input type="text" class="form-control" name="streamname" value="{{ $stream->name }}">
                     @error('streamname')@enderror
                 </div>
                 <div class="form-group">
                     <label>Short Name</label>
-                    <input type="text" class="form-control" name="streamabbrev">
-                    @error('streamabbrev')@enderror
+                    <input type="text" class="form-control" name="streamabbrev" value="{{ $stream->abbrev }}">
+                    @error('classabbrev')@enderror
                 </div>
                 <div class="form-group"><br>
                     <input type="submit" value="SAVE" class="btn btn-lg btn-success">
