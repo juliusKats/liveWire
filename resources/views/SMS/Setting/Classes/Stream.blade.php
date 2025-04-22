@@ -8,9 +8,21 @@
         <h1>Blank Page</h1>
     </div>
     <div class="section-body">
+
+
+        <div class="font-medium text-red-600 dark:text-red-400">{{ __('Whoops! Something went wrong.') }}</div>
+
+        <ul class="mt-3 list-disc list-inside text-sm text-red-600 dark:text-red-400">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        @endif
         <div class="row">
             <div class="col-4 col-md-4 col-sm-4"></div>
             <div class="col-4 col-md-4 col-sm-4">
+                @if ($errors->any())
+                @endif
                 @if (session('error'))
                     <div class="alert alert-danger m-1 alert-dissmisable fade show">
                         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -22,7 +34,7 @@
             @csrf
                 <div class="form-group">
                     <label>Stream Name</label>
-                    <input type="text" class="form-control" name="streamname">
+                    <input type="text" class="form-control" name="stream_name">
                     @error('streamname')@enderror
                 </div>
                 <div class="form-group">
