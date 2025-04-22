@@ -19,7 +19,11 @@
                             </form>
                         </div>
                         <div class="card-body">
-                            <form method="post" action="{{ route('save.scores') }}">
+                            <div hidden="hidden" id="errorbox" class="col-md-12 col-12 alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <h6 id="alertText"></h6>
+                            </div>    
+                            <form  method="post" action="{{ route('save.scores') }}">
                                 @csrf
                                 <div class="form-group row">
                                     <div class="form-group col-6">
@@ -81,7 +85,7 @@
                                     </div>
                                     <div class="form-group col-6">
                                         <label>Exam Set</label><br>
-                                        <select name="examset" id="exam" class="form-control select2">{{ old('examset') }}
+                                        <select name="examset" id="examset" class="form-control select2">{{ old('examset') }}
                                             <option value="0"> ---- select Exam Set ---- </option>
                                             @foreach ($examsets as $item)
                                             <option value="{{$item->id}}"> {{$item->name}}</option>
@@ -105,8 +109,13 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <input type="submit" class="btn btn-lg btn-success" Value="Save Scores">
+                                <div class="row form-group">
+                                    <div class="form-group col-9">
+                                        <input type="submit" class="btn btn-lg btn-success" Value="Save Scores">
+                                    </div>
+                                    <div class="form-group col-3">
+                                        <input name="maxscore" class="form-control"id="maxscore" type="number" readonly hidden="hidden">
+                                    </div>
                                 </div>
                             </form>
                         </div>

@@ -95,7 +95,7 @@ class AjaxController extends Controller
 
     public function fetchObjectives(Request $request){
         $objective['objectives']=DB::table('subject_objectives')
-        ->select('subject_objectives.year_id', 'subject_objectives.term_id', 'subject_objectives.level_id', 'subject_objectives.class_id', 'subject_objectives.stream_id', 'subject_objectives.subject_id', 'subject_objectives.paper_id', 'subject_objectives.objective', 'subject_objectives.details') // FROM `subject_objectives` 
+        ->select('subject_objectives.year_id', 'subject_objectives.term_id', 'subject_objectives.level_id', 'subject_objectives.class_id', 'subject_objectives.stream_id', 'subject_objectives.subject_id', 'subject_objectives.paper_id', 'subject_objectives.objective', 'subject_objectives.details') // FROM `subject_objectives`
         ->join('subject_levels','subject_objectives.subject_id','=','subject_levels.subject_id')
         ->where('subject_objectives.year_id','=',$request->year_id)
         ->where('subject_objectives.term_id','=',$request->term_id)
@@ -106,6 +106,16 @@ class AjaxController extends Controller
                 ->where('subject_objectives.subject_id','=',$request->subject_id)
         ->get();
         return response()->json($objective);
+    }
+
+    public function fetchmaxscore(Request $request){
+        $score['scores']=DB::table('exam_set_scores')
+        ->select('term_id','year_id','exam_id','max_score')
+        ->where('year_id','=',$request->year_id)
+        ->where('term_id','=',$request->term_id)
+        ->where('exam_id','=',$request->exam_id)
+        ->get();
+        return response()->json($score);
     }
 }
 

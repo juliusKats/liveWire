@@ -12,6 +12,9 @@ $(document).ready(function () {
     //     clearAndAppendOptions('#term', result.terms, '-- Select Term --');
     // }
 
+    var alertTxt = document.getElementById('alertText')
+    var errorbx= document.getElementById ('errorbox')
+
    $('#year').on('change',function(){
         var yearId = this.value;
         if (!yearId || yearId === "0") {
@@ -282,7 +285,7 @@ $(document).ready(function () {
                     $("#objective").append('<option value="' + value
                         .id + '">' +value.objective + '</option>');
                 });
-        
+
                 // $('#objective').html('<option value="">-- Select Objective --</option>');
             },
             error: function(xhr, status, error) {
@@ -297,12 +300,59 @@ $(document).ready(function () {
         console.log(objective_id);
     })
     $('#examset').on('change',function(){
-        var examset_id = this.value;
-        console.log(examset_id);
+        var examId = this.value;
+        var termId = document.getElementById('term').value
+        var yearId = document.getElementById('year').value
+        var scoremax =document.getElementById('maxscore')
+
+        console.log(termId)
+        console.log(yearId)
+        console.log(examId)
+        var URL ='http://127.0.0.1:8000/api/fetch/max/score'
+
+
+        scoremax.value == 0
+        $.ajax({
+            url:URL,
+            type:'GET',
+            data:{
+                _token:'{{csrf_token()}}',
+               term_id:termId,
+                year_id:yearId,
+                exam_id:examId
+            },
+            dataType:'json',
+            success: function(result){
+                console.log(result)
+                console.log(result.scores)
+
+                $.each(result.scores, function (key, value) {
+                    console.log(value.max_score)
+                    scoremax.value =value.max_score
+                });
+
+            },
+            error: function(xhr, status, error) {
+                console.error('Error:', error);
+                alert('An error occurred while fetching data. Please try again.');
+            }
+        });
+
+
     })
-    $('#score').on('change',function(){
-        var score_id = this.value;
-        console.log(score_id);
+    $('#score').on('keyup',function(){
+        var scoreId =parseInt(this.value);
+        var scoremax = parseInt(document.getElementById('maxscore').value)
+
+        console.log(scoreId);
+        if(scoreId < 0 || scoreId > scoremax){
+            errorbx.removeAttribute('hidden','hidden')
+            alertTxt.innerText ="Invalid Score Value"
+        }
+        else{
+            errorbx.setAttribute('hidden','hidden')
+            alertTxt.innerText =""
+        }
     })
     $('#grade').on('change',function(){
         var grade_id = this.value;

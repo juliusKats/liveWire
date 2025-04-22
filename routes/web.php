@@ -33,6 +33,7 @@ Route::controller(AjaxController::class)->group(function () {
  Route::get('api/fetch/student/subject','fetchstudentsubjects');
  Route::get('api/fetch/subject/paper','fetchSubjectPaper');
  Route::get('api/fetch/objectives','fetchObjectives');
+ Route::get('api/fetch/max/score','fetchmaxscore');
 
 });
 
